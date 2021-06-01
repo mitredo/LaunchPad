@@ -1,11 +1,6 @@
 <style>
-body
-{
-	font-family:NHGrotesk,helvetica,sans-serif !important;
-	color: black;
-    margin: 1px;
-}
-    
+
+ 
 @font-face {
     font-family: NHGrotesk;
     src: url(https://fonts.gstatic.com/s/worksans/v3/z9rX03Xuz9ZNHTMg1_ghGRUOjZSKWg4xBWp_C_qQx0o.woff2) format("woff2")
@@ -15,6 +10,14 @@ body
     white-space: normal;
 }
 
+body
+{
+	font-family:NHGrotesk,helvetica,sans-serif !important;
+	color: black;
+    margin: 1px;
+}
+   
+
 .layout-drawer-hamburger,
 .hamburger-header,
 .hamburger-header-container {
@@ -23,19 +26,18 @@ body
 
 .tab__header>div {
     display: inline;
-    ;
-    font-size: 2vmin
+    font-size: 2vmin;
 }
 
 table {
     font-family: NHGrotesk;
-    font-size: 2vw
+    font-size: 2vw;
 }
 
 
 label {
-    font-family: Arial;
-    font-size: 3vmin
+    font-family: NHGrotesk;
+    font-size: 3vmin;
 }
 
 ,
@@ -251,7 +253,7 @@ user agent stylesheettable {
     clear: both;
 }
 
-.tab__header>div {
+.tab__header > div {
     display: inline-block;
     vertical-align: top;
     float: left;
@@ -264,12 +266,12 @@ user agent stylesheettable {
     box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.75);
 }
 
-.tab__header>div:hover {
+.tab__header > div:hover {
     background: #0288D1;
     cursor: pointer;
 }
 
-.tab__header>div.tab__header--active {
+.tab__header > div.tab__header--active {
     background: #0288D1;
 }
 
@@ -285,14 +287,14 @@ user agent stylesheettable {
     padding: 0 0 20px 0;
 }
 
-.tab__content>div {
+.tab__content > div {
     display: inline-block;
     vertical-align: top;
     float: left;
     display: none;
 }
 
-.tab__content>div.tab__content--active {
+.tab__content > div.tab__content--active {
     display: block;
 }
 
