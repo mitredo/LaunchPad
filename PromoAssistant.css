@@ -24,7 +24,7 @@ body
     display: none !important;
 }
 
-.tab__header>div {
+.tab__header > div {
     display: inline;
     font-size: 2vmin;
 }
@@ -298,5 +298,8 @@ user agent stylesheettable {
     display: block;
 }
 
-    
+.tab1
+{
+	font-family: NHGrotesk;
+}
 </style>
