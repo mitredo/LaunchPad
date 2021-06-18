@@ -31,8 +31,8 @@
 		var channels = item.channel;
 		var promotiontype = item.promo;
 		var oems = item.oem;
-		launchDate = moment.utc(launchDate);
-		promoEndDate = moment.utc(promoEndDate);
+		launchDate = moment(launchDate);
+		promoEndDate = moment(promoEndDate);
 		var launchTime = moment(launchDate).format("YYYY-MM-DD");
 		var endTime = moment(promoEndDate).format("YYYY-MM-DD");
 		if (launchTime > today || endTime < today)
@@ -299,11 +299,11 @@ function formateligibility(cellValue, options, rowObject) {
 function formatdate(cellValue, options, rowObject) {
 
 	var cellHtml = "";
-	var today = moment.utc(new Date());
+	var today = moment(new Date());
 	var formatToday = today.format("YYYY-MM-DD");
-	var launchDate = moment.utc(new Date (rowObject.launchdate._d));
+	var launchDate = moment(new Date (rowObject.launchdate._d));
 	var launchdays = dateDiff( today,launchDate);
-	var endDate = moment.utc(new Date (rowObject.enddate._d));
+	var endDate = moment(new Date (rowObject.enddate._d));
 	var enddays = dateDiff(today,endDate);
 	
 	var backgroundcolor = "#FFF";
@@ -442,8 +442,8 @@ function pushElements(i,element,promotiontype,oems)
 	{
 		var launchDate = new Date(element.launchdate);
 		var promoEndDate = new Date(element.enddate);
-		launchDate = moment.utc(launchDate);
-		promoEndDate = moment.utc(promoEndDate);
+		launchDate = moment(launchDate);
+		promoEndDate = moment(promoEndDate);
 		element.launchdate = launchDate;
 		element.enddate = promoEndDate;
 	}
