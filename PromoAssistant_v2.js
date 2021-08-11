@@ -1,9 +1,5 @@
-/* ------------------------------PromoAssistant-v2.html    ----------------------------
-	08/03/21 - change Telesales to Inside Sales as per Lisa
-*/
 var calendarEvents = [];
 var curSource = new Array();
-//var channelArray = ["Retail","Telesales","Indirect","Care"];
 var promoArray = [[],[]];
 var phoneArray = [[],[]];
 var colModel = [];
@@ -15,8 +11,6 @@ var textFile = null;
 var unboxdArray = [];
 
 $(document).ready(function(){
-	//hide checkbox for filter
-	//ctx.load(web);	
 	$('input[name=channel]').css({
 			"visibility": "hidden"
 	});
@@ -31,17 +25,12 @@ $(document).ready(function(){
         }
 
     }
-	//getPromotions(); - this is now triggered by the top web part, after SMB has been collected
-	
-	/*$(function () {
-            ExecuteOrDelayUntilScriptLoaded(testSMB, "sp.js");
-    });*/
 	$('.tab1').multitabs();
 	
 	var $filterCheckboxes = $('input[name="channel"]');
 	channelCount = $filterCheckboxes.length;
 	selectedFilters = {};	
-	$("#Channel_Option_0").click();  // click on Retail as default channel
+	$("#Channel_Option_0").click();
 	
 	$("#export_unboxd").click(function() {	
 		exportToUnboxd();
@@ -102,7 +91,7 @@ $(document).ready(function(){
 				
 				
 	 	}
-	 	//$("input#filterInput").focus();
+
 	});	
 	$(".sub_level").on("click", function() {
 	 	for (var i=0; i<$(this).children().length; i++)
@@ -153,20 +142,17 @@ $(document).ready(function(){
 				$("#jqGridPromo4").trigger("reloadGrid");	
 				break;		
 	 	}
-	 	//$("input#filterInput").focus();
 	});	
-	// change target of OST 
 	$(document).on('click', 'a',function(){
-		if ($(this)[0].innerHTML.indexOf('<img') == -1)	// this is not a simple href
+		if ($(this)[0].innerHTML.indexOf('<img') == -1)	
 		   $(this).attr("target","_blank");
 	}); 
 	var tables = $('table[id^="jqGrid"]');
 	var input = $("input#filterInput");
 	
 	$('#aspnetForm').keydown(function(e){
-    if (e.keyCode === 13) { // If Enter key pressed
+    if (e.keyCode === 13) { 
         dynamicFilterData(selectedFilters);
-        //$('#searchimage').click();
     	}
 	});
 	
@@ -174,20 +160,10 @@ $(document).ready(function(){
 		dynamicFilterData(selectedFilters);
 	});
 	
-	input.keyup(function() // On key presses
+	input.keyup(function()
 	{	
 		if (input.val().length == 0 || input.val().length > 2)
 		{
-			/*for (i=0; i<tables.length;i++)
-			{
-				table = tables[i];
-				{
-					table.innerHTML = table.innerHTML.replace(/<\/?mark[^>]*>/g,"");
-				}
-				table.find('tr').each(function (row) {
-					$(this).show();  
-				});
-			}*/
 			dynamicFilterData(selectedFilters);
 		}	
 	});
@@ -197,24 +173,12 @@ $(document).ready(function(){
 	      oldValue = $input.val();
 	
 	  if (oldValue == "") return;
-	
-	  // When this event is fired after clicking on the clear button
-	  // the value is not cleared yet. We have to wait for it.
+
 	  setTimeout(function(){
 	    var newValue = $input.val();
 	
 	    if (newValue == ""){
-	    	// gotcha
-			/*for (i=0; i<tables.length;i++)
-			{
-				table = tables[i];
-				{
-					table.innerHTML = table.innerHTML.replace(/<\/?mark[^>]*>/g,"");
-				}
-				table.find('tr').each(function (row) {
-					$(this).show();  
-				});
-			}*/
+
 			dynamicFilterData(selectedFilters);
 	    }
 	  }, 1);
@@ -224,50 +188,41 @@ $(document).ready(function(){
 
 function getPromotions()
 {
-	// 03/10/2020 - add &$ to select  - this will aleviate issues with too many "multiple person" columns
 	var today = new Date();
 	var last7Days = new Date();
 	var last4Days = new Date();
 	var last30Days = new Date();
 	today = today.format("yyyy-MM-ddT00:00:00Z");
-	last7Days = addDays(today, -7);  // changed from -7
+	last7Days = addDays(today, -7); 
 	last7Days = last7Days.format("yyyy-MM-ddT00:00:00Z");
-	last4Days = addDays(today, -4);  // changed from -7
+	last4Days = addDays(today, -4); 
 	last4Days = last4Days.format("yyyy-MM-ddT00:00:00Z");
-	last30Days = addDays(today, -30);  // changed from -7
+	last30Days = addDays(today, -30);  
 	last30Days = last30Days.format("yyyy-MM-ddT00:00:00Z");
 	
 	var retailArray = ['Retail'];
 	var telesalesArray = ['Telesales'];
 	var indirectArray = ['Indirect Agents','Prepaid Only Agents','Indirect National Retail'];
-	//var webArray = ['VZW.com/Consumer', 'My Verizon', 'My Verizon Mobile'];
-	//var comArray = ['VZ.com','My Verizon Mobile App','My Fios App'];
-	//var careArray = ['Wireless Care','Fios Care'];
-	//var otherArray =  ['Telesales','Dfill','Verizon Up','Door To Door','VZ.com','Verizon Mobile App','My Fios App','B2B','N/A'];
-	//var homeArray = ['Fios Care','My Fios App','Strategic Sales'];
+
 	var digitalArray = ['VZ.com','Verizon Mobile App','Verizon Up','DFill'];
 	var careArray = ['Wireless Care','B2B','Dfill','.com Chatbot'];
 	var homeArray = ["Fios Care","Strategic Sales"];
     	
     var url = "https://esites.vzbi.com/sites/HQ_GTM";
 	var listname = "GTM Dynamic Brief";
-	// remove sort by priority Priority_x0020_Level,
-	// use launch date modified instead of null launch date, it does not work  - Launch_x0020_Date_x0020_Modified  .  OLD logic:  Launch_x0020_Date eq datetime'1900-01-01T00:00:00'
+
 	var query = "?$filter=(Launch_x0020_Date ge DateTime'" + last7Days + "' or Promo_x0020_End_x0020_Date_x00201 ge DateTime'" + last4Days + "' or (Promotional_x0020_Timeframe_x003 ge DateTime'" + today + "' )) and (isB2B ne '' and (isB2B eq 'GTM')) and (Priority_x0020_Level eq '1' or Priority_x0020_Level eq '2' or Priority_x0020_Level eq '3' or Priority_x0020_Level eq '4') and Launch_x0020_Type eq 'Promotion' and GTM_x0020_Status eq 'Assigned' and Should_x0020_this_x0020_be_x0020 eq 'No'&$select=ID,isB2B,Project_x0020_Name,Launch_x0020_Date,Launch_x0020_Type,Priority_x0020_Level,GTM_x0020_Status,Promotional_x0020_Timeframe_x003,Should_x0020_this_x0020_be_x0020,Date_x0028_s_x0029_,Training_x0020_Links,Customer_x0020_Eligibility,Channel_x0020_Availability,What_x0020_are_x0020_the_x0020_T,Promotion_x0020_Type,Promotion_x0020_OEM,Parent_x0020_Launch_x0020_Date_x,Parent_x0020_Project_x0020_ID0Id,Customer_x0020_Primary_x0020_Use,Alternate_x0020_Title_x0020__x00&$orderby=Launch_x0020_Date,Project_x0020_Name&$top=800";		
     $.ajax({
     	async: false,
         url: url + "/_api/web/lists/getbytitle('" + listname + "')/items" + query,
-        //CAMLViewFields: viewFields,
         method: "GET",
         async: false,
         headers: { "Accept": "application/json; odata=verbose" },
         success: function (data) {
-            //complete(data); // Returns JSON collection of the results
 	        var stringData = JSON.stringify(data);
 	        var jsonObject = JSON.parse(stringData);
 	        var results = jsonObject.d.results;
 	        var item;
-	        //var today = new Date().format("yyyy/MM/dd");
 	        today = moment(new Date()).format('YYYY-MM-DD');
 
 	        for(i = 0; i < results.length;i++) {
@@ -278,12 +233,6 @@ function getPromotions()
 				promoEndDate = moment(promoEndDate);
 				var launchTime = moment(launchDate).format('YYYY-MM-DD');
 				var endTime = moment(promoEndDate).format('YYYY-MM-DD');
-				//var launchdatediff = new Date (launchDate - today);
-				//var launchdays = parseInt(launchdatediff/1000/60/60/24,0);
-				//var launchdays = launchDate.diff(today, 'days');
-				//var launchdays = moment.duration(launchDate.diff(today)).asDays();
-				//var launchdays = dateDiff(today, launchDate);
-				//				if (launchdays > 0)
 				if (launchTime > today || endTime < today)
 					continue;
 				var status = results[i].GTM_x0020_Status; 
@@ -302,7 +251,7 @@ function getPromotions()
 					parentid = 0;
 				var launchtype = results[i].Launch_x0020_Type;
 				var channels = results[i].Channel_x0020_Availability.results;
-				//r channel = channels.split(',');
+
 				var eligibilities = [];
 				if (results[i].Customer_x0020_Eligibility != null)
 					eligibilities = results[i].Customer_x0020_Eligibility.results;
@@ -373,16 +322,13 @@ function getPromotions()
 							break;	
 					}  
 				}
-				// no longer need to carry ost	
+
 				ost = "";
 				var element = {	
 					id: item.Id,
 			        project: project,
 			        dates: dates,
-			        //priority: item.Priority_x0020_Level,
-					//eligible: item.Customer_x0020_Eligibility,
 			        channel: item.Channel_x0020_Availability.results,
-			        //ost: ost,
 			        aal: aal,
 			        byod: byod,
 			        dig: digital,
@@ -405,7 +351,6 @@ function getPromotions()
 				for (var j in channels) {
 					if ($.inArray(channels[j],retailArray) != -1)
 					{
-						// call function to push all elements to corresponding array
 						pushElements(0,element,promotiontype,oems);
 					}
 					if ($.inArray(channels[j],telesalesArray) != -1)
@@ -435,15 +380,12 @@ function getPromotions()
 		   } 
 	    },
         error: function (err) {
-            //failure(data);
             alert ("SPGetListItems failed with error" + JSON.stringify(err));
         }
     });
-    
-    //displayjGrid(concatSource1);
+
 }
 
-/* ================Get SMB promotion =================== */
 function getSMBPromotions()
 {
 
@@ -497,11 +439,9 @@ function cbChange(obj) {
     var cbs = document.getElementsByClassName("cb");
     for (var i = 0; i < cbs.length; i++) {
         cbs[i].checked = false;
-        //cbs[i].parentNode.style.opacity='0.5';
         cbs[i].parentNode.parentNode.style.background="#FFF";
     }
     obj.checked = true;
-    //obj.parentNode.style.opacity='1';
     obj.parentNode.parentNode.style.background="#0288D1";
 
     selectedChannel = obj.value;
@@ -523,7 +463,6 @@ function cbChange(obj) {
     {
 		reloadGrids(3);	
 	}
-	//$("input#filterInput").focus();
 }
 
 
@@ -532,19 +471,15 @@ function setColModel()
 
 	colModel.push({label: 'Promotion',name:'project',width: 150, align: 'left', sortable:true});
 	colModel.push({label: 'Dates',name:'dates',width: 80, formatter:formatdate, align: 'center', sortable:true});
-	//colModel.push({label: 'Priority', name: 'priority', width: 60, align: 'center', sortable:true, classes:'inmarket' });
 	colModel.push({label: 'AAL', name: 'aal', width: 40, formatter: formateligibility,align: 'center', sortable:true });
 	colModel.push({label: 'BYOD', name: 'byod', width: 45, formatter: formateligibility,align: 'center', sortable:true });
 	colModel.push({label: 'New', name: 'newacct', width: 45, formatter: formateligibility, align: 'center', sortable:true });
 	colModel.push({label: 'Port', name: 'port', width: 45, formatter: formateligibility, align: 'center', sortable:true });
 	colModel.push({label: 'Prepaid', name: 'pre', width: 55, formatter: formateligibility, align: 'center', sortable:true });
-	//colModel.push({label: 'Postpaid', name: 'postpaid', width: 60, formatter: formateligibility, align: 'center', sortable:true });
 	colModel.push({label: 'Upgrade', name: 'upg', width: 58, formatter: formateligibility, align: 'center', sortable:true });
 	colModel.push({label: 'Digital Exclusive', name: 'dig', width: 70, formatter: formateligibility, align: 'center', sortable:true });
-	//colModel.push({label: 'Loyalty', name: 'loyalty', width: 58, formatter: formateligibility, align: 'center', sortable:true });
 	colModel.push({label: 'Plan Required', name: 'plan', width: 70, formatter: formateligibility, align: 'center', sortable:true });
 	
-	//colModel.push({label: 'Key Points', name: 'keypoints', width: 300,  align: 'center', sortable:false });
 	colModel.push({label: 'OST', name: 'ost', width: 0, align: 'center', hidden:true,sortable:false, class:'underscore' });
 	colModel.push({label: 'Launch Date', name: 'launch', width: 0, align: 'center', hidden:true, sortable:false });
 	colModel.push({label: 'End Date', name: 'end', width: 0, align: 'center', hidden:true, sortable:false });
@@ -565,27 +500,22 @@ function formatdate(cellValue, options, rowObject) {
 	var today = moment(new Date());
 	var formatToday = today.format('YYYY-MM-DD');
 	var launchDate = moment(new Date (rowObject.launchdate._d));
-	//var launchdays = launchDate.diff(today, 'days'); //moment.duration(launchDate.diff(today)).asDays();
 	var launchdays = dateDiff( today,launchDate);
 	var endDate = moment(new Date (rowObject.enddate._d));
-	//var enddays = endDate.diff(today, 'days'); //moment.duration(endDate.diff(today)).asDays();
 	var enddays = dateDiff(today,endDate);
 	
 	var backgroundcolor = '#FFF';
 	var color = '#000';
-	//	if (launchdays == 0)
 	if (launchDate.format('YYYY-MM-DD') == formatToday)
-		backgroundcolor =  '#00ac3e'; // green
+		backgroundcolor =  '#00ac3e'; 
 	else  if (enddays == 1 || enddays == 2)
-		backgroundcolor = '#FFFF00';   // yellow
+		backgroundcolor = '#FFFF00';  
 	else if (enddays == 0)
 	{
-		backgroundcolor = '#d52b1e';   // red
+		backgroundcolor = '#d52b1e'; 
 		color = '#FFF';
 	}
 
-	//rowObject.launchdate._d
-	//rowObject.enddate._d
 	
 	var cellHtml = "<div style='width:100%;height:101%;background-color:" + backgroundcolor + "; color:" + color + "'>" + cellValue + "</div>";
     return cellHtml;
@@ -602,14 +532,12 @@ function displayjGrid(events,gridID)
 		width: '728',
         height: 'auto',
         rowNum: 100,
-        //maxHeight: 1000,
         pager: "#jqGridPager",
 		viewrecords: true,
 		shrinkToFit: false,
 		altRows : true,
 		allowSorting : true,
 		allowMultiSorting : true,
-		//Sorting more than one column while initializing the grid itself. If direction is not specified, by default it takes as ascending.
 		sortSettings: { sortedColumns: [{ field: "dates", direction: "ascending" }, { field: "project" }] }			
     	})		
 }
@@ -617,15 +545,11 @@ function displayjGrid(events,gridID)
 function pushElements(i,element,promotiontype,oems)
 {
 
-	//if (element.home == "Mobile" || element.home== "Both")
-	// write to the All bucket regardless
 		promoArray[i][0].push(element);
 					
 	if (element.home == "Home" || element.home == "Both")
 		promoArray[i][6].push(element);
 
-	
-	// reset launch date and end date for SMB
 	if (oems == 'Business')
 	{
 		var launchDate = new Date(element.launchdate);
@@ -685,10 +609,7 @@ function dateDiff (startDate, endDate)
 	var count = 0;
 	var curDate = startDate;
 	while (curDate < endDate) {
-		//var dayOfWeek = curDate.getDay();
-		//if(!((dayOfWeek == 6) || (dayOfWeek == 0))) == dont need to exclude weekend
 		count++;
-		//curDate.setDate(curDate.getDate() + 1);
 		curDate.add(1, 'days');
 	}
 	return count;
@@ -737,7 +658,6 @@ function dynamicFilterData(selectedFilters)
 {
 
 	var tables = $('table[id^="jqGrid"]')
-	// remove all "marked" text
 	for (i=0; i<tables.length;i++)
 	{
 	 	table = tables[i];
@@ -750,7 +670,7 @@ function dynamicFilterData(selectedFilters)
 			$(this).show();  
 			if (matchTextBoxSearch($(this)))
 			{
-				//$(this).show();
+				var a=1;
 			}
 			else
 			{
@@ -762,17 +682,12 @@ function dynamicFilterData(selectedFilters)
 
 function matchTextBoxSearch(row)
 {
-	//var list = $("table.ms-listviewtable");
-	// Table row of the items in my list.
-	//var listItems = $("table.ms-listviewtable tr:not(.ms-viewheadertr)");
-	// Our filter input.
 	var input = $("input#filterInput");
 	if (input.val().toLowerCase() != '' && input.val().toLowerCase() != 'search...')
 	{
-	    //listItems.each(function() // for each items in our list
 	    {
-			var text = row.text().toLowerCase(); // get all the text values of that list item
-			if (text.indexOf(input.val().toLowerCase()) != -1) // does it match the text of our filter?
+			var text = row.text().toLowerCase(); 
+			if (text.indexOf(input.val().toLowerCase()) != -1) 
 			{ 
 			    var regex = new RegExp(input.val().toLowerCase(), 'gi');
 		        var response = row[0].innerHTML.replace(regex, function(str) {
@@ -783,7 +698,7 @@ function matchTextBoxSearch(row)
 			}
 			else
 			{
-			     return false; // nope! hide it!
+			     return false; 
 			}
 		}
 	}
