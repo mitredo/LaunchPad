@@ -341,10 +341,10 @@ function formatdate(cellValue, options, rowObject) {
 	if (launchDate.format("YYYY-MM-DD") == formatToday)
 		backgroundcolor =  "#00ac3e"; 
 	else  if (enddays == 1 || enddays == 2)
-		backgroundcolor = "#FFFF00";  
+		backgroundcolor = "#FFBC3D";  
 	else if (enddays == 0)
 	{
-		backgroundcolor = "#d52b1e"; 
+		backgroundcolor = "#EE0000"; 
 		color = "#FFF";
 	}
 
