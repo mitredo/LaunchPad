@@ -1,0 +1,223 @@
+<style>
+body
+{
+	font-family:NHGrotesk,helvetica,sans-serif !important;
+	color: black;
+	font-size:8px !important;
+}
+
+    h2 {
+        font-size: 32px;
+        color: black !important;
+    }
+    h3 {
+        font-weight: bold;
+    }
+    #dataTable td {
+        height: 20px;
+        padding: 3px;
+    }
+    #dataTable tr:hover td {
+        background-color: #d8dada;
+    }
+    .nodisplay {
+        display: none;
+    }
+    .yes {
+        background-color: #00ac3e;
+        color: white;
+    }
+    #toplegend {
+        margin-top: -6%;
+        margin-left: 0%;
+    }
+    .ss_ul li {
+        padding: 5px;
+    }
+    th.ui-th-column div {
+        white-space: normal !important;
+        height: auto !important;
+        padding: 1px;
+        font-weight: bold;
+    }
+    .ui-jqgrid .ui-jqgrid-htable th {
+        height: 2em !important;
+    }
+    .ui-jqgrid tr.jqgrow td {
+        height: 1em !important;
+    }
+    .ui-jqgrid tr.jqgrow td {
+        white-space: normal !important;
+    }
+    #toplegend {
+        margin-top: 0%;
+        margin-left: 0%;
+    }
+    .ui-jqgrid-view {
+        max-height: 680px;
+    }
+    .ui-jqgrid-bdiv {
+        overflow-y: scroll !important;
+        max-height: 600px !important;
+    }
+    .ms-rtestate-field p,
+    p.ms-rteElement-P {
+        margin: 0px;
+    }
+    .oddTableRow {
+        background-color: #f2f2f2 !important;
+    }
+    tr:nth-child(even) {
+        background: #f2f2f2;
+    }
+    tr:nth-child(odd) {
+        background: #fff;
+    }
+    #filterInput::-webkit-search-cancel-button {
+        position: relative;
+        right: 5px;
+    }
+    a {
+        text-decoration: underline;
+    }
+.h2headerblack
+{
+	color:black;
+	font-size:1.2em;
+	font-weight:bold;
+	line-height:16px;
+}
+label
+{
+	font-weight:700;
+	font-family:NHGrotesk;
+	font-size:20px;
+}
+
+element.style {
+    text-align: left;
+}
+.ui-jqgrid tr.jqgrow td {
+    height: 1em !important;
+}
+.ui-jqgrid tr.ui-row-ltr td {
+    text-align: left;
+    border-right-width: 1px;
+    border-right-color: inherit;
+    border-right-style: solid;
+}
+.ui-jqgrid tr.jqgrow td {
+    font-weight: normal;
+    overflow: hidden;
+    height: 23px;
+    padding: 1px 2px 1px 2px;
+    border-bottom-width: 1px;
+    border-bottom-color: inherit;
+    border-bottom-style: solid;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+user agent stylesheet
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+.ui-widget-content {
+    border: 1px solid #aaaaaa;
+    background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
+    color: #222222;
+}
+.ui-jqgrid .ui-jqgrid-btable {
+    table-layout: fixed;
+    margin: 0;
+    outline-style: none;
+    border-collapse: separate;
+}
+.ui-jqgrid .ui-common-table {
+    border-width: 0px;
+    border-style: none;
+    border-spacing: 0px;
+    padding: 0;
+}
+.ms-rtestate-field TABLE, .ms-rtestate-write TABLE {
+    border-collapse: collapse;
+}
+user agent stylesheet
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+.ui-jqgrid .ui-jqgrid-bdiv {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    text-align: left;
+    z-index: 101;
+}
+.ui-jqgrid .ui-jqgrid-view {
+    position: relative;
+    left: 0;
+    top: 0;
+    padding: 0;
+    font-size: 11px;
+    z-index: 100;
+}
+.ui-widget {
+	font-family:NHGrotesk;
+}
+.tab__header {
+  display: block;
+  clear: both;
+}
+
+.tab__header > div {
+  display: inline-block;
+  vertical-align: top;
+  float: left;
+  padding: 10px;
+  font-weight:bold;
+  background: #EFEFEF;
+  color: #000;
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.75);
+}
+
+.tab__header > div:hover {
+  background: #0288D1;
+  cursor: pointer;
+}
+
+.tab__header > div.tab__header--active {
+  /*background: #0288D1;*/
+	border-bottom: 5px solid #ee0000;
+}
+
+.tab__content {
+  display: block;
+  clear: both;
+  background: #fafafa;
+  color: #212121;
+  width: auto;
+  /*max-width: 400px;*/
+  height: inherit;
+  overflow: auto;
+  padding: 0 0 20px 0;
+}
+
+.tab__content > div {
+  display: inline-block;
+  vertical-align: top;
+  float: left;
+  display: none;
+}
+
+.tab__content > div.tab__content--active {
+  display: block;
+}
+    
+</style>
