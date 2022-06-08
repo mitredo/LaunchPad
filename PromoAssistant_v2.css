@@ -222,5 +222,9 @@ table {
 
 .ui-jqgrid .ui-jqgrid-htable .ui-th-div {
 	height: auto !important
-}    
+}  
+
+.ui-jqgrid .ui-jqgrid-htable .ui-th-div {
+	white-space: pre-wrap !important;
+}	
 </style>
