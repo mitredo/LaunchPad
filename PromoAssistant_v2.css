@@ -219,5 +219,8 @@ table {
 .tab__content > div.tab__content--active {
   display: block;
 }
-    
+
+.ui-jqgrid .ui-jqgrid-htable .ui-th-div {
+	height: auto !important
+}    
 </style>
