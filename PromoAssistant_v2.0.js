@@ -301,7 +301,7 @@ function cbChange(obj) {
 function setColModel()
 {
 
-	colModel.push({label: "Promotion",name:"project",width: 185, align: "left", sortable:true});
+	colModel.push({label: "Promotion/OST Link<br>(Verizon log-in required)",name:"project",width: 185, align: "left", sortable:true});
 	colModel.push({label: "Dates",name:"dates",width: 80, formatter:formatdate, align: "center", sortable:true});
 
 	colModel.push({label: "AAL", name: "aal", width: 40, formatter: formateligibility,align: "center", sortable:true });
