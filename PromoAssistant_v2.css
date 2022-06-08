@@ -227,4 +227,10 @@ table {
 .ui-jqgrid .ui-jqgrid-htable .ui-th-div {
 	white-space: pre-wrap !important;
 }	
+
+.tab__header > div.tab__header--active {
+	background-color:white !important;
+	border-bottom: 5px solid #ee0000 !important;
+}
+
 </style>
