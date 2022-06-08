@@ -354,7 +354,7 @@ function formatdate(cellValue, options, rowObject) {
 		color = "#FFF";
 	}
 
-	var cellHtml = "<div style=width:100%;height:101%;background-color:" + backgroundcolor + "; color:" + color + ">" + cellValue + "</div>";
+	var cellHtml = "<div style='width:100%;height:101%;background-color:" + backgroundcolor + "; color:" + color + "'>" + cellValue + "</div>";
     return cellHtml;
 }
 
