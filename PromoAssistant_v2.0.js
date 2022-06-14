@@ -160,10 +160,8 @@
 				$("#jqGrid5GHome").jqGrid('setGridParam', {data:promoArray[i][8]});
 				$("#jqGrid5GHome").trigger("reloadGrid");	
 				break;
-				
-				
 	 	}
-
+		dynamicFilterData(selectedFilters);
 	});	
 	$(".sub_level").on("click", function() {
 	 	for (var i=0; i<$(this).children().length; i++)
@@ -218,7 +216,7 @@
 				$("#jqGridPromo4").trigger("reloadGrid");	
 				break;		
 	 	}
-
+		dynamicFilterData(selectedFilters);
 	});	
 	$(document).on("click", "a",function(){
 		if ($(this)[0].innerHTML.indexOf("<img") == -1)	
@@ -258,6 +256,10 @@
 	    }
 	  }, 1);
 	});	
+	$('input[type=search]').on('search', function() {
+		dynamicFilterData(selectedFilters);
+	});
+	
 });
 function cbChange(obj) {
     var cbs = document.getElementsByClassName("cb");
@@ -339,7 +341,7 @@ function formatdate(cellValue, options, rowObject) {
 	var endDate = moment.utc(new Date (rowObject.enddate._d));
 	var enddays = dateDiff(today,endDate);
 	
-	var backgroundcolor = "#FFF";
+	var backgroundcolor = "";
 	var color = "#000";
 	if (launchDate.format("YYYY-MM-DD") == formatToday)
 	{
@@ -354,7 +356,7 @@ function formatdate(cellValue, options, rowObject) {
 		color = "#FFF";
 	}
 
-	var cellHtml = "<div style='width:100%;height:101%;background-color:" + backgroundcolor + "; color:" + color + "'>" + cellValue + "</div>";
+	var cellHtml = "<div style='width:100%;background-color:" + backgroundcolor + "; color:" + color + "'>" + cellValue + "</div>";
     return cellHtml;
 }
 
@@ -444,31 +446,57 @@ function reloadGrids(i)
 				activeSubTab = "All";
 				$("#tab__header_all").click();
 			}
-		}		
+		}
+		dynamicFilterData(selectedFilters);
 }
 function dynamicFilterData(selectedFilters)
 {
 
-	var tables = $("table[id^=jqGrid]")
-	for (i=0; i<tables.length;i++)
+	var input = $("input#filterInput");
+	var tables = $('table[id^="jqGrid"]');
+	var colTotal=4;
+	// remove all "marked" text
+	for (t=0; t<tables.length;t++)
 	{
-	 	table = tables[i];
+	 	table = tables[t];
 		{
 			table.innerHTML = table.innerHTML.replace(/<\/?mark[^>]*>/g,"");
 		}
-		var tableId = tables[i].id;
-		var $table = $("#" + tables[i].id );
-	    $table.find("tr").each(function (row) {
-			$(this).show();  
-			if (matchTextBoxSearch($(this)))
+		var tableId = tables[t].id;
+		var $table = $("#" + tables[t].id );
+		var tr = table.getElementsByTagName("tr");
+		var regex = new RegExp(input.val().toLowerCase(), 'gi');
+		if (input.val().toLowerCase() != '' && input.val().toLowerCase() != 'search...')
+		{		
+			filter = input.val().toLowerCase();
+	        // Loop through all table rows, and hide those who don't match the        search query
+			for (i = 1; i < tr.length; i++) 
 			{
-				var a=1;
-			}
-			else
+	            tr[i].style.display = "none";
+	            for(var j=0; j<colTotal; j++)
+			    {
+			        td = tr[i].getElementsByTagName("td")[j];      
+			        if (td) 
+			        {
+			            if (td.innerHTML.toLowerCase().indexOf(filter) > -1)                               
+			            {
+			                tr[i].style.display = "";
+			                var response = td.innerHTML.replace(regex, function(str) {
+					            return "<mark>" + str + "</mark>"
+					        })
+					        td.innerHTML = response;
+			         	}
+			     	}
+			  	}
+			}			
+		}
+		else
+		{
+			for (i = 1; i < tr.length; i++) 
 			{
-				$(this).hide();
+	            tr[i].style.display = "";
 			}
-		});
+		}
 	}
 }
 
