@@ -188,7 +188,7 @@ table {
 }
 
 .tab__header > div:hover {
-  background: #0288D1;
+  background: #EEEEEE;
   cursor: pointer;
 }
 
@@ -200,7 +200,7 @@ table {
 .tab__content {
   display: block;
   clear: both;
-  background: #fafafa;
+  background: #ffffff;
   color: #212121;
   width: auto;
   /*max-width: 400px;*/
@@ -231,6 +231,15 @@ table {
 .tab__header > div.tab__header--active {
 	background-color:white !important;
 	border-bottom: 5px solid #ee0000 !important;
+}
+
+.tab__header > div 
+{
+	padding:5px 15px 5px 15px;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, tab
+{
+	background: #ffffff !important;
 }
 
 </style>
