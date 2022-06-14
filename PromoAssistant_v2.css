@@ -1,4 +1,9 @@
 <style>
+@font-face {
+    font-family: NHGrotesk;
+    src: url(https://fonts.gstatic.com/s/worksans/v3/z9rX03Xuz9ZNHTMg1_ghGRUOjZSKWg4xBWp_C_qQx0o.woff2) format("woff2")
+}
+
 body
 {
 	font-family:NHGrotesk,helvetica,sans-serif !important;
