@@ -10,7 +10,6 @@ var selectedFilters;
 var response;
 var textFile = null;
 var unboxdArray = [];
-var currentURL = _spPageContextInfo.serverRequestPath;
 
 $(document).ready(function () {
 	for(var i = 0; i<8; i++){   // 8 represents 9 indices
