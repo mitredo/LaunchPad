@@ -1,0 +1,137 @@
+<style>
+body {
+	font-family:NHGrotesk;
+}
+h2 {
+	font-size:32px;
+	color:black !important;	
+}
+h3 {
+	font-weight:bold;
+}
+#dataTable td 
+{
+	height:20px;
+	padding:3px;
+}
+
+#dataTable tr:hover td {
+    background-color: #D8DADA;
+}
+.nodisplay
+{
+	display:none;
+}
+.yes
+{
+	background-color:#000000;
+	color:white;
+}
+#toplegend
+{
+	margin-top: -6%;
+    margin-left: 0%;
+}
+.ss_ul li
+{
+	padding:5px;
+}
+
+th.ui-th-column div{
+    white-space:normal !important;
+    height:auto !important;
+    padding:1px;
+    font-weight:bold;
+	font-size:10px;
+}
+
+th.ui-th-column {
+	border: 1px solid #aaaaaa !important;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th {
+    height: 2em !important;
+}
+.ui-jqgrid tr.jqgrow td{
+    height: 1em !important;
+}
+.ui-jqgrid tr.jqgrow td {
+	white-space:normal;
+}
+#toplegend
+{
+	margin-top: 0%;
+    margin-left: 0%;
+}
+.ui-jqgrid-view {
+    max-height: 680px;
+}
+.ui-jqgrid-bdiv {
+    overflow-y: scroll !important;
+    max-height: 600px !important;
+}
+.ms-rtestate-field p, p.ms-rteElement-P
+{
+	margin:0px;
+}
+/*[aria-describedby$="ost"], [aria-describedby$="project"]
+{
+	text-decoration:underline;
+}*/
+.oddTableRow
+{
+	background-color: #f2f2f2 !important;
+}
+/*tr:nth-child(even) {background: #f2f2f2}
+tr:nth-child(odd) {background: #FFF}*/
+
+#filterInput::-webkit-search-cancel-button{
+    position:relative;
+    right:5px;    
+}
+
+a {
+	text-decoration:underline;
+}
+/* 09/21/21*/
+.tab__header {
+	font-size:14px;
+}
+
+.tab__header > div 
+{
+	padding:5px;
+	background-color:white;
+	background: white;
+}
+
+.tab__header > div.tab__header--active {
+	background-color:white !important;
+	border-bottom: 5px solid #ee0000 !important;
+}
+
+.tab__header > div:hover {
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, tab
+{
+	background: #ffffff !important;
+}
+
+.tab__content {
+	background:#ffffff !important;
+}
+
+label {
+    font-weight: 700;
+    font-family: NHGrotesk;
+    font-size: 1.2em !important;
+    /* opacity: 0.6; */
+}
+
+.ui-jqgrid .ui-jqgrid-htable th {
+    padding: 0 1px 0 1px !important;
+}
+</style>
