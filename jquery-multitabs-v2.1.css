@@ -1,0 +1,161 @@
+
+@media screen and (max-device-width: 480px){
+  body{
+    -webkit-text-size-adjust: none;
+  }
+}
+
+body
+{
+	font-family:NHGrotesk,helvetica,sans-serif !important;
+	color: black;
+}
+
+@font-face {
+    font-family: NHGrotesk;
+    src: url(https://static.wixstatic.com/ufonts/3bb6a5_42c1de792a7d456db30bd5e5277e55ed/woff2/file.woff2) format("woff2"),
+	url(https://static.wixstatic.com/ufonts/3bb6a5_42c1de792a7d456db30bd5e5277e55ed/woff2/file.woff2) format("truetype")	
+}
+
+.tab__header {
+  display: block;
+  clear: both;
+}
+
+.tab__header > div {
+  display: inline-block;
+  vertical-align: top;
+  float: left;
+  padding: 10px;
+  font-weight:bold;
+  background: #FFFFFF;
+  color: #000;
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.75);
+}
+
+.tab__header > div:hover {
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.tab__header > div.tab__header--active {
+  /*background: #0288D1;*/
+	border-bottom: 5px solid #ee0000;
+  
+}
+
+.tab__content {
+  display: block;
+  clear: both;
+  background: #ffffff;
+  color: #212121;
+  width: auto;
+  /*max-width: 400px;*/
+  height: inherit;
+  overflow: auto;
+  padding: 0 0 20px 0;
+}
+
+.tab__content > div {
+  display: inline-block;
+  vertical-align: top;
+  float: left;
+  display: none;
+}
+
+.tab__content > div.tab__content--active {
+  display: block;
+}
+.h2headerblack
+{
+	color:black;
+	font-size:1.2em;
+	font-weight:bold;
+	line-height:16px;
+}
+label
+{
+	font-weight:700;
+	font-family:NHGrotesk;
+	font-size:1.2em;
+	/*opacity:0.6;*/
+}
+
+element.style {
+    text-align: left;
+}
+.ui-jqgrid tr.jqgrow td {
+    height: 1em !important;
+}
+.ui-jqgrid tr.ui-row-ltr td {
+    text-align: left;
+    border-right-width: 1px;
+    border-right-color: inherit;
+    border-right-style: solid;
+}
+.ui-jqgrid tr.jqgrow td {
+    font-weight: normal;
+    overflow: hidden;
+    white-space: pre;
+    height: 23px;
+    padding: 1px 2px 1px 2px;
+    border-bottom-width: 1px;
+    border-bottom-color: inherit;
+    border-bottom-style: solid;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+user agent stylesheet
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+.ui-widget-content {
+    border: 1px solid #aaaaaa;
+    background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
+    color: #222222;
+}
+.ui-jqgrid .ui-jqgrid-btable {
+    table-layout: fixed;
+    margin: 0;
+    outline-style: none;
+    border-collapse: separate;
+}
+.ui-jqgrid .ui-common-table {
+    border-width: 0px;
+    border-style: none;
+    border-spacing: 0px;
+    padding: 0;
+}
+.ms-rtestate-field TABLE, .ms-rtestate-write TABLE {
+    border-collapse: collapse;
+}
+user agent stylesheet
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+.ui-jqgrid .ui-jqgrid-bdiv {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    text-align: left;
+    z-index: 101;
+}
+.ui-jqgrid .ui-jqgrid-view {
+    position: relative;
+    left: 0;
+    top: 0;
+    padding: 0;
+    font-size: 11px;
+    z-index: 100;
+}
+.ui-widget {
+	font-family:NHGrotesk;
+}
