@@ -16,7 +16,7 @@
 	for(var i = 0; i<6; i++){
     	promoArray[i]= new Array();
     	phoneArray[i]= new Array();
-      	for(var j = 0; j<9; j++){
+      	for(var j = 0; j<10; j++){
          	promoArray[i][j] = new Array();
         }
       	for(var j = 0; j<5; j++){
@@ -84,6 +84,7 @@
 	displayjGrid(promoArray[0][5],"Other");	
 	displayjGrid(promoArray[0][6],"Home");
 	displayjGrid(promoArray[0][8],"5GHome");
+	displayjGrid(promoArray[0][9],"Prepaid");
 	displayjGrid(promoArray[0][7],"Loyalty");
 	displayjGrid(phoneArray[0][0],"Promo0");
 	displayjGrid(phoneArray[0][1],"Promo1");
@@ -154,6 +155,11 @@
 	 			$("#jqGridLoyalty").clearGridData();	
 				$("#jqGridLoyalty").jqGrid('setGridParam', {data:promoArray[i][7]});
 				$("#jqGridLoyalty").trigger("reloadGrid");	
+				break;
+			case "Prepaid":
+	 			$("#jqGridPrepaid").clearGridData();	
+				$("#jqGridPrepaid").jqGrid('setGridParam', {data:promoArray[i][9]});
+				$("#jqGridPrepaid").trigger("reloadGrid");
 				break;
 	 		case "5G Home":
 	 			$("#jqGrid5GHome").clearGridData();	
@@ -423,7 +429,10 @@ function reloadGrids(i)
 		$("#jqGridLoyalty").trigger("reloadGrid");
 		$("#jqGrid5GHome").clearGridData();	
 		$("#jqGrid5GHome").jqGrid('setGridParam', {data:promoArray[i][8]});
-		$("#jqGrid5GHome").trigger("reloadGrid");	
+		$("#jqGrid5GHome").trigger("reloadGrid");
+		$("#jqGridPrepaid").clearGridData();	
+		$("#jqGridPrepaid").jqGrid('setGridParam', {data:promoArray[i][9]});
+		$("#jqGridPrepaid").trigger("reloadGrid");
 		if (i!=4)  // not SMB tab
 		{
 			$("#tab__header-4").css({"display": "inline"});
@@ -588,6 +597,9 @@ function pushElements(i,element,promotiontype,oems)
 			break;
 		case "Entertainment Promo": 
 			promoArray[i][4].push(element);
+			break;
+		case "Prepaid Promo":
+			promoArray[i][9].push(element);
 			break;
 		case "Other Promo": 
 			promoArray[i][5].push(element);
