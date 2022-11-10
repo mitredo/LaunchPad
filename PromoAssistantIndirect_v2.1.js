@@ -614,10 +614,10 @@ function pushElements(i,element,promotiontype,oems)
 			promoArray[i][4].push(element);
 			break;
 		case "Priceplan Promo": 
-			promoArray[i][5].push(element);
+			promoArray[i][6].push(element);
 			break;
 		case "Prepaid Promo": 
-			promoArray[i][6].push(element);
+			promoArray[i][5].push(element);
 			break;
 		case "Other Promo": 
 			promoArray[i][7].push(element);
