@@ -9,14 +9,16 @@ h2 {
 h3 {
 	font-weight:bold;
 }
+
+
+td div{
+	white-space:pre-wrap!important;
+}
+
 #dataTable td 
 {
 	height:20px;
 	padding:3px;
-}
-
-td div{
-	white-space:pre-wrap!important;
 }
 
 #dataTable tr:hover td {
