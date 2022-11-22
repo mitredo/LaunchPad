@@ -15,6 +15,10 @@ h3 {
 	padding:3px;
 }
 
+td div{
+	white-space:pre-wrap;
+}
+
 #dataTable tr:hover td {
     background-color: #D8DADA;
 }
