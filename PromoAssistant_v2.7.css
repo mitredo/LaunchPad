@@ -16,7 +16,7 @@ h3 {
 }
 
 td div{
-	white-space:pre-wrap !important;
+	white-space:pre-wrap!important;
 }
 
 #dataTable tr:hover td {
