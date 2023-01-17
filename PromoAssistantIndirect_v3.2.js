@@ -42,7 +42,7 @@ $(document).ready(function () {
 		var alreadyPushedCare = false;
 		for (var j in channels) {
 			if(channels[j] == 'Retail'){
-				pushElements(4, costco_element, promotiontype, oems);
+				pushElements(4, item, promotiontype, oems);
 			}
 
 			if (channels[j] == 'Indirect Agents')
