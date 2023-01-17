@@ -16,7 +16,7 @@ $(document).ready(function () {
 	for(var i = 0; i<8; i++){   // 8 represents 9 indices
     	promoArray[i]= new Array();
     	phoneArray[i]= new Array();
-      	for(var j = 0; j<8; j++){  // this is for sub headers
+      	for(var j = 0; j<9; j++){  // this is for sub headers
          	promoArray[i][j] = new Array();
         }
       	for(var j = 0; j<5; j++){
@@ -41,6 +41,10 @@ $(document).ready(function () {
 		var alreadyPushedIndirect = false;
 		var alreadyPushedCare = false;
 		for (var j in channels) {
+			if(channels[j] == 'Retail'){
+				pushElements(4, costco_element, promotiontype, oems);
+			}
+
 			if (channels[j] == 'Indirect Agents')
 				pushElements(0,item,promotiontype,oems);
 			if (channels[j] == 'Prepaid Only Agents')
@@ -79,7 +83,8 @@ $(document).ready(function () {
 	displayjGrid(promoArray[0][3],"Loyalty");
 	displayjGrid(promoArray[0][4],"Entertainment");
 	displayjGrid(promoArray[0][5],"Prepaid");
-	displayjGrid(promoArray[0][6],"Priceplan");	
+	displayjGrid(promoArray[0][6],"Priceplan");
+	displayjGrid(promoArray[0][8], "Accessories");
 	displayjGrid(promoArray[0][7],"Other");
 	displayjGrid(phoneArray[0][0],"Promo0");
 	displayjGrid(phoneArray[0][1],"Promo1");
@@ -161,6 +166,12 @@ $(document).ready(function () {
 	 			$("#jqGridPriceplan").clearGridData();	
 				$("#jqGridPriceplan").jqGrid('setGridParam', {data:promoArray[i][6]});
 				$("#jqGridPriceplan").trigger("reloadGrid");	
+				break;
+				
+			case "Accessories":
+				$("#jqGridAccessories").clearGridData();
+				$("#jqGridAccessories").jqGrid('setGridParam', {data:promoArray[i][8]});
+				$("#jqGridAccessories").trigger("reloadGrid");
 				break;
 				
 	 		case "Other":
@@ -321,30 +332,37 @@ function cbChange(obj) {
     	return;
     if (selectedChannel == "Agents")
     {
+	$('#tab__header-9').hide();    
     	reloadGrids(0);
 	}
 	else if (selectedChannel == "PrepaidAgents")
     {
+	  	$('#tab__header-9').hide();  
 		reloadGrids(1);	
 	}
 	else if (selectedChannel == "AppleRetail")
     {
+	    	$('#tab__header-9').hide();
 		reloadGrids(2);
 	}
 	else if (selectedChannel == "BestBuy")
     {
+	    	$('#tab__header-9').hide();
 		reloadGrids(3);	
 	}
 	else if (selectedChannel == "Costco")
     {
+	    	$('#tab__header-9').show();
 		reloadGrids(4);	
 	}
 	else if (selectedChannel == "Military")
     {
+	    	$('#tab__header-9').hide();
 		reloadGrids(5);	
 	}
 	else if (selectedChannel == "Walmart")
     {
+	    	$('#tab__header-9').hide();
 		reloadGrids(6);	
 	}
 	
@@ -475,6 +493,9 @@ function reloadGrids(i)
 		$("#jqGridPriceplan").clearGridData();
 		$("#jqGridPriceplan").jqGrid('setGridParam', {data:promoArray[i][6]});
 		$("#jqGridPriceplan").trigger("reloadGrid");
+		$("#jqGridAccessories").clearGridData();
+		$("#jqGridAccessories").jqGrid('setGridParam',{data:promoArray[i][8]});
+		$("#jqGridAccessories").trigger("reloadGrid");
 		$("#jqGridOther").clearGridData();
 		$("#jqGridOther").jqGrid('setGridParam', {data:promoArray[i][7]});
 		$("#jqGridOther").trigger("reloadGrid");
@@ -618,6 +639,9 @@ function pushElements(i,element,promotiontype,oems)
 			break;
 		case "Prepaid Promo": 
 			promoArray[i][5].push(element);
+			break;
+		case "Accessory Promo":
+			promoArray[i][8].push(element);
 			break;
 		case "Other Promo": 
 			promoArray[i][7].push(element);
