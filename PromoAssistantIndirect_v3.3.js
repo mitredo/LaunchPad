@@ -24,6 +24,7 @@ $(document).ready(function () {
         }
     }
 	var today = moment(new Date()).format("YYYY-MM-DD");
+    // Add everything but costco 
     for(i = 0; i < promosArray.length;i++) {
 		item = promosArray[i];
 		var launchDate = new Date(item.launchdate);
@@ -41,10 +42,6 @@ $(document).ready(function () {
 		var alreadyPushedIndirect = false;
 		var alreadyPushedCare = false;
 		for (var j in channels) {
-			if(channels[j] == 'Retail'){
-				pushElements(4, item, promotiontype, oems);
-			}
-
 			if (channels[j] == 'Indirect Agents')
 				pushElements(0,item,promotiontype,oems);
 			if (channels[j] == 'Prepaid Only Agents')
@@ -74,6 +71,29 @@ $(document).ready(function () {
 						pushElements(6,item,promotiontype,oems);
 						
 				}
+			}
+		}
+	}
+	// Now we do costco
+	    for(i = 0; i < costcoArray.length;i++) {
+		item = costcoArray[i];
+		var launchDate = new Date(item.launchdate);
+		var promoEndDate = new Date(item.enddate);
+		var channels = item.channel;
+		var promotiontype = item.promo;
+		var oems = item.oem;
+		var nationalRetailers = item.nationalretailers;
+		launchDate = moment.utc(launchDate);
+		promoEndDate = moment.utc(promoEndDate);
+		var launchTime = moment(launchDate).format("YYYY-MM-DD");
+		var endTime = moment(promoEndDate).format("YYYY-MM-DD");
+		if (launchTime > today || endTime < today)
+			continue;		
+		var alreadyPushedIndirect = false;
+		var alreadyPushedCare = false;
+		for (var j in channels) {
+			if(channels[j] == 'Retail'){
+				pushElements(4, item, promotiontype, oems);
 			}
 		}
 	}
