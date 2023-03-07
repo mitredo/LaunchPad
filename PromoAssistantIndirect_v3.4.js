@@ -93,7 +93,9 @@ $(document).ready(function () {
 		var alreadyPushedCare = false;
 		for (var j in channels) {
 			if(channels[j] == 'Retail'){
-				pushElements(4, item, promotiontype, oems);
+				if(promotiontype != 'Accessory Promo'){
+					pushElements(4, item, promotiontype, oems);
+				}
 			}
 		}
 	}
